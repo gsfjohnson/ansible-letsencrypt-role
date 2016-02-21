@@ -1,0 +1,11 @@
+---
+
+le_version: 0.4.0
+le_name: letsencrypt
+le_dl_url: "https://github.com/letsencrypt/letsencrypt/archive/v{{le_version}}.tar.gz"
+le_tmp_file: /tmp/{{le_name}}-{{le_version}}.tar.gz
+
+le_email: joe@example.com
+le_domain: example.com
+le_method: apache
+

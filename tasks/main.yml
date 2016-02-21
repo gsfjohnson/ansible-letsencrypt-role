@@ -1,0 +1,24 @@
+---
+
+- name: install prereqs
+  yum: name={{item}} state=installed
+  with_items:
+    - python-devel
+    - python-pip
+    - python-tools
+    - python-virtualenv
+    - augeas-libs
+    - dialog
+    - gcc
+    - libffi-devel
+    - openssl-devel
+    - redhat-rpm-config
+
+- name: download {{le_dl_url}}
+  get_url: url={{le_dl_url}} dest={{le_tmp_file}}
+
+- name: expand archive
+  unarchive: src={{le_tmp_file}} dest=/tmp copy=no creates=/tmp/v{{le_version}}
+
+- name: exec letsencrypt-auto
+  command: ./letsencrypt-auto run --{{le_method}} --domain {{le_domain}} --email {{le_email}}
